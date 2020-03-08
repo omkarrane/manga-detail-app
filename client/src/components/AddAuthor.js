@@ -14,14 +14,13 @@ class AddAuthor extends Component {
 
   submitForm(event) {
     event.preventDefault();
-    console.log(this.props);
-    // this.props.addAuthorMutation({
-    //   variables: {
-    //     name: this.state.name,
-    //     age: this.state.age
-    //   },
-    //   refetchQueries: [{ query: getAuthorsQuery }]
-    // });
+    this.props.mutate({
+      variables: {
+        name: this.state.name,
+        age: parseInt(this.state.age)
+      },
+      refetchQueries: [{ query: getAuthorsQuery }]
+    });
   }
 
   render() {
@@ -35,7 +34,7 @@ class AddAuthor extends Component {
 
         <div className="field">
           <label>Age</label>
-          <input type="text" onChange={(e) => this.setState({age: e.target.value})} />
+          <input type="number" onChange={(e) => this.setState({age: e.target.value})} />
         </div>
 
         <button>+</button>

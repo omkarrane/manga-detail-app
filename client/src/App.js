@@ -18,7 +18,7 @@ function App() {
         <h1>Omkar's Manga List</h1>
         <MangaList />
         <AddManga />
-        {/* <AddAuthor /> */}
+        <AddAuthor />
       </div>
     </ApolloProvider>
   );
