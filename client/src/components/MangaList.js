@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 
 const getMangasQuery = gql`
   {
-    books{
+    mangas{
       name
       id
     }
@@ -12,12 +12,24 @@ const getMangasQuery = gql`
 `
 
 class MangaList extends Component {
+  displayMangas() {
+    let data = this.props.data;
+    if(data.loading) {
+      return( <div>Loading Mangas...</div> );
+    } else {
+      return data.mangas.map(eachManga => {
+        return (
+          <li key={eachManga.id}>{eachManga.name}</li>
+        );
+      })
+    }
+  }
+
   render() {
-    console.log(this.props);
     return (
       <div id="main">
         <ul id="manga-list">
-          <li>Manga List</li>
+          {this.displayMangas()}
         </ul>
       </div>
     );

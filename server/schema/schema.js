@@ -9,11 +9,11 @@ const {
   GraphQLList,
   GraphQLNonNull
 } = graphql;
-const Book = require("../models/book");
+const Manga = require("../models/manga");
 const Author = require("../models/author");
 
-const BookType = new GraphQLObjectType({
-  name: 'Book',
+const MangaType = new GraphQLObjectType({
+  name: 'Manga',
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -33,10 +33,10 @@ const AuthorType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
-    books: {
-      type: new GraphQLList(BookType),
+    mangas: {
+      type: new GraphQLList(MangaType),
       resolve(parent, args) {
-        return Book.find({ authorId: parent.id });
+        return Manga.find({ authorId: parent.id });
       }
     }
   })
@@ -45,11 +45,11 @@ const AuthorType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    book: {
-      type: BookType,
+    manga: {
+      type: MangaType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return Book.findById(args.id);
+        return Manga.findById(args.id);
       }
     },
     author: {
@@ -59,10 +59,10 @@ const RootQuery = new GraphQLObjectType({
         return Author.findById(args.id);
       }
     },
-    books: {
-      type: new GraphQLList(BookType),
+    mangas: {
+      type: new GraphQLList(MangaType),
       resolve(parent, args) {
-        return Book.find();
+        return Manga.find();
       }
     },
     authors: {
@@ -91,20 +91,20 @@ const Mutation = new GraphQLObjectType({
         return author.save();
       }
     },
-    addBook: {
-      type: BookType,
+    addManga: {
+      type: MangaType,
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         genre: { type: new GraphQLNonNull(GraphQLString) },
         authorId: { type: new GraphQLNonNull(GraphQLID) }
       },
       resolve(parent, args) {
-        let book = new Book({
+        let manga = new Manga({
           name: args.name,
           genre: args.genre,
           authorId: args.authorId
         });
-        return book.save();
+        return manga.save();
       }
     }
   }

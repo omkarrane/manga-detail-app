@@ -1,1 +1,1 @@
-# book-detail-app
+# manga-detail-app
