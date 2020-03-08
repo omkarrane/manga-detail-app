@@ -27,6 +27,15 @@ const addMangaMutation = gql`
   }
 `
 
+const addAuthorMutation = gql`
+  mutation($name: String!, $age: Int!) {
+    addAuthor(name: $name, age: $age) {
+      name
+      id
+    }
+  }
+`
+
 const getMangaQuery = gql`
   query($id: ID!) {
     manga(id: $id) {
@@ -45,4 +54,4 @@ const getMangaQuery = gql`
   }
 `
 
-export { getAuthorsQuery, getMangasQuery, addMangaMutation, getMangaQuery };
+export { getAuthorsQuery, getMangasQuery, addMangaMutation, addAuthorMutation, getMangaQuery };

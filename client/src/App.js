@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 
 import MangaList from './components/MangaList';
 import AddManga from './components/AddManga';
+import AddAuthor from './components/AddAuthor';
 
 // ApolloClient setup
 const client = new ApolloClient({
@@ -17,6 +18,7 @@ function App() {
         <h1>Omkar's Manga List</h1>
         <MangaList />
         <AddManga />
+        {/* <AddAuthor /> */}
       </div>
     </ApolloProvider>
   );
