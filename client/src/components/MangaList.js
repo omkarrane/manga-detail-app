@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-
-const getMangasQuery = gql`
-  {
-    mangas{
-      name
-      id
-    }
-  }
-`
+import { getMangasQuery } from '../queries/queries';
+import MangaDetails from './MangaDetails';
 
 class MangaList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: null
+    };
+  }
+
   displayMangas() {
     let data = this.props.data;
     if(data.loading) {
@@ -19,7 +18,7 @@ class MangaList extends Component {
     } else {
       return data.mangas.map(eachManga => {
         return (
-          <li key={eachManga.id}>{eachManga.name}</li>
+          <li key={eachManga.id} onClick={(e) => this.setState({ selected: eachManga.id })}>{eachManga.name}</li>
         );
       })
     }
@@ -31,6 +30,7 @@ class MangaList extends Component {
         <ul id="manga-list">
           {this.displayMangas()}
         </ul>
+        <MangaDetails mangaId={this.state.selected} />
       </div>
     );
   }
