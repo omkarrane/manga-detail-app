@@ -3,9 +3,11 @@
 
 To run this app follow the steps
 1. Make a .env file containing following environment variables 
-  * DB_USER=<db_username>
-  * DB_PASSWORD=<db_password>
-  * DB_SCHEMA=<db_schema>
+```
+DB_USER=<db_username>
+DB_PASSWORD=<db_password>
+DB_SCHEMA=<db_schema>
+```
 2. Run the server via 
 ```
 cd server/
