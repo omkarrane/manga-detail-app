@@ -7,8 +7,12 @@ To run this app follow the steps
   * DB_PASSWORD=<db_password>
   * DB_SCHEMA=<db_schema>
 2. Run the server via 
-    cd server/
-    node app.js
+```
+cd server/
+node app.js
+```
 3. Run the client via
-    cd client/
-    npm start
+```
+cd client/
+npm start
+```
